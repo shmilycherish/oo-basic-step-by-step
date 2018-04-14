@@ -21,23 +21,16 @@ public class Practice11Test {
 
     @Test
     public void should_person_have_id_name_and_age() throws Exception {
-        Person person = new Person(1, "Tom", 21);
+        Person person = new Teacher(1, "Tom", 21);
         assertThat(person.getName()).isEqualTo("Tom");
         assertThat(person.getAge()).isEqualTo(21);
     }
 
     @Test
     public void should_person_with_same_id_be_same_one() throws Exception {
-        Person person1 = new Person(1, "Tom", 21);
-        Person person2 = new Person(1, "Tom", 21);
+        Person person1 = new Teacher(1, "Tom", 21);
+        Person person2 = new Teacher(1, "Tom", 21);
         assertThat(person1).isEqualTo(person2);
-    }
-
-    @Test
-    public void should_person_have_an_introduce_method_which_introduce_person_with_name_and_age() throws Exception {
-        Person tom = new Person(1, "Tom", 21);
-        String introduce = tom.introduce();
-        assertThat(introduce).isEqualTo("My name is Tom. I am 21 years old.");
     }
 
     @Test
@@ -166,5 +159,26 @@ public class Practice11Test {
         klass2.assignLeader(jerry);
 
         assertThat(systemOut().endsWith("I am Tom. I know Jerry become Leader of Class 2.\n")).isTrue();
+    }
+
+    @Test
+    public void should_student_be_notified_when_another_student_join_the_classes_it_in() throws Exception {
+        Student jerry = new Student(1, "Jerry", 8, new Klass(3));
+        Student alex = new Student(1, "Alex", 8, klass2);
+
+        klass2.appendMember(jerry);
+
+        assertThat(systemOut().endsWith("I am Alex. I am at Class 2. I know Jerry become our new classmate.\n")).isTrue();
+    }
+
+    @Test
+    public void should_student_be_notified_when_any_class_it_teaches_assigned_a_leader() throws Exception {
+        Student jerry = new Student(1, "Jerry", 8, new Klass(3));
+        Student alex = new Student(1, "Alex", 8, klass2);
+
+        klass2.appendMember(jerry);
+        klass2.assignLeader(jerry);
+
+        assertThat(systemOut().endsWith("I am Alex. I am at Class 2. I know My classmates Jerry become Leader of the class.\n")).isTrue();
     }
 }

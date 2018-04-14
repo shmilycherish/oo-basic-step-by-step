@@ -9,7 +9,7 @@ public class Klass {
     private int number;
     private Student leader;
     private List<Student> students = new ArrayList<>();
-    private List<Teacher> teachers = new ArrayList<>();
+    private List<Person> people = new ArrayList<>();
 
     public Klass(int number) {
         this.number = number;
@@ -55,15 +55,15 @@ public class Klass {
         notifyTeachersStudentJoin(student);
     }
 
-    public void registerNotifiedTeacher(Teacher teacher) {
-        teachers.add(teacher);
+    public void registerNotifiedPerson(Person person) {
+        people.add(person);
     }
 
     private void notifyTeachersStudentJoin(Student student) {
-        teachers.stream().forEach(teacher -> teacher.confirmStudentJoin(student));
+        people.stream().forEach(person -> person.confirmStudentJoin(student));
     }
 
     private void notifyTeachersAssignLeader(Student student) {
-        teachers.stream().forEach(teacher -> teacher.confirmStudentBecomeLeader(student));
+        people.stream().forEach(person -> person.confirmStudentBecomeLeader(student));
     }
 }

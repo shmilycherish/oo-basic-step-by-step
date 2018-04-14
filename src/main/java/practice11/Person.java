@@ -2,7 +2,7 @@ package practice11;
 
 import static java.lang.String.format;
 
-public  class Person {
+public abstract class Person {
     private int id;
     private final String name;
     private final int age;
@@ -37,4 +37,8 @@ public  class Person {
         Person test = (Person) obj;
         return this.id == test.id;
     }
+
+    public abstract void confirmStudentBecomeLeader(Student student);
+
+    public abstract void confirmStudentJoin(Student student);
 }
