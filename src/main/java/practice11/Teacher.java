@@ -14,6 +14,7 @@ public class Teacher extends Person {
     public Teacher(int id, String name, int age, Set<Klass> klasses) {
         super(id, name, age);
         this.classes = klasses;
+        registerToEachClass();
     }
 
     public Teacher(int id, String name, int age) {
@@ -46,4 +47,16 @@ public class Teacher extends Person {
         return isTeaching(student) ? format("I teach %s.", student.getName()) : format("I don't teach %s.", student.getName());
     }
 
+    public void confirmStudentJoin(Student student) {
+        System.out.println(format("I am %s. I know %s has joined Class %s.", getName(), student.getName(), student.getKlass().getNumber()));
+    }
+
+    public void confirmStudentBecomeLeader(Student student) {
+        System.out.println(format("I am %s. I know %s become Leader of Class %s.", getName(), student.getName(), student.getKlass().getNumber()));
+    }
+
+
+    private void registerToEachClass() {
+        classes.stream().forEach(klass -> klass.registerNotifiedTeacher(this));
+    }
 }

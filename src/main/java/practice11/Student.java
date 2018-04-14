@@ -5,7 +5,7 @@ import static java.lang.String.format;
 import static java.util.Arrays.asList;
 
 public class Student extends Person {
-    private final Klass klass;
+    private Klass klass;
 
     public Student(int id, String name, int age, Klass klass) {
         super(id, name, age);
@@ -26,5 +26,9 @@ public class Student extends Person {
             return "Leader of";
         }
         return "at";
+    }
+
+    public void setKlass(Klass klass) {
+        this.klass = klass;
     }
 }
